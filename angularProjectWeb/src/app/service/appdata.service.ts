@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppdataService {
-
+  apiEndpoint = 'http://localhost:9999/webAPI_ProjectWebFinal';
+  FoodServic: any;
   constructor() { }
 }
