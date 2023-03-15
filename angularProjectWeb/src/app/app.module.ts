@@ -19,6 +19,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { AmountComponent } from './page/amount/amount.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 ////
 
 @NgModule({
@@ -28,9 +31,12 @@ import { MatSelectModule } from '@angular/material/select';
     CustomerComponent,
     AdminComponent,
     MainComponent,
-    HeaderComponent
+    HeaderComponent,
+    AmountComponent
   ],
   imports: [
+    MatGridListModule,
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

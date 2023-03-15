@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { MatDialog } from '@angular/material/dialog';
+import { AmountComponent } from '../amount/amount.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -39,9 +40,9 @@ export class MainComponent {
   amount(foods: string) {
     console.log("amount");
     console.log(foods);
-    // this.dataService.FoodServic = foods;
-    // this.dialog.open(AmountComponent, {
-    //   maxWidth: '300px'
-    // })
+    this.dataService.FoodServic = foods;
+    this.dialog.open(AmountComponent, {
+      maxWidth: '800px'
+    })
   }
 }
