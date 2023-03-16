@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppdataService } from 'src/app/service/appdata.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent {
-
+  constructor(private dataServec: AppdataService,
+    private route: Router) {
+  }
 }

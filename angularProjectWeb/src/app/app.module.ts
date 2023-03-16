@@ -50,7 +50,7 @@ import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.compon
     MatFormFieldModule,
     MatSelectModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
