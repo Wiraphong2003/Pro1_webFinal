@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AmountComponent } from './page/amount/amount.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 ////
 
@@ -38,6 +39,7 @@ import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.compon
     ShoppingCartComponent
   ],
   imports: [
+    MatExpansionModule,
     MatGridListModule,
     MatButtonModule,
     BrowserModule,
