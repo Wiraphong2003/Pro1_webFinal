@@ -23,6 +23,11 @@ import { AmountComponent } from './page/amount/amount.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
+import { EditComponent } from './page/admin/edit/edit.component';
+
 ////
 
 @NgModule({
@@ -34,7 +39,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MainComponent,
     HeaderComponent,
     AmountComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    InsertmenuComponent,
+    EditComponent
   ],
   imports: [
     MatExpansionModule,
@@ -51,6 +58,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSelectModule,
     HttpClientModule,
     MatDialogModule,
+    FormsModule,
+    MatInputModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
