@@ -8,5 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HeaderComponent {
   uname: any;
-  constructor(private dataService: AppdataService, private http: HttpClient) { }
+  constructor(
+    private dataService: AppdataService,
+    private http: HttpClient) { }
+
+  cartLink() {
+    console.log("cartLint");
+    
+  }
 }
