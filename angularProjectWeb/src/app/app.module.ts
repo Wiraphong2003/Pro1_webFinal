@@ -10,7 +10,6 @@ import { MainComponent } from './page/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './page/header/header.component';
 import { HttpClientModule } from "@angular/common/http";
-
 import { MatDialogModule } from '@angular/material/dialog';
 ////
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,7 +23,6 @@ import { AmountComponent } from './page/amount/amount.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-
 ////
 
 @NgModule({

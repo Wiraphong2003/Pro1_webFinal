@@ -11,6 +11,7 @@ import { AmountComponent } from '../amount/amount.component';
 export class MainComponent {
   foods: any = '';
   type: any = '';
+
   constructor(
     private dataService: AppdataService,
     private http: HttpClient,

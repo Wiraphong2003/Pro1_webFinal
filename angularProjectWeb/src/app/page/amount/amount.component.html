@@ -1,14 +1,3 @@
-<!-- <mat-card style="width: 250px;height: 150px;">
-  <mat-card-header>
-    <mat-card-title>ชื่อสินค้า {{foodOj.name}}</mat-card-title>
-    <mat-card-title>ราคา {{foodOj.price}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-actions align="end">
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
-
 
 <mat-card class="card" style="width: 500px;">
   <mat-card-header>
@@ -18,165 +7,32 @@
       <img mat-card-sm-image src={{foodOj.img}}>
     </mat-card-title-group>
   </mat-card-header>
-  
-  <mat-card-content style="display: flex;">
+
+  <!-- <mat-card-content style="display: flex;">
     <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handleMinus()">
       <mat-icon>remove</mat-icon>
     </button>
-  
+
     <mat-card style="font-size: 30px;text-align: center; width: 60px;margin-left: 20px;margin-right: 40px;">
       <p style="margin-top: 10px;height: 20px;;">{{amount}}</p>
     </mat-card>
-  
+
     <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handlePlus()">
       <mat-icon>add</mat-icon>
     </button>
   </mat-card-content>
   <mat-card-footer style="font-size: 20px;">
-    <p>รวม {{sumprice}}</p>
-  </mat-card-footer>
-  <mat-card-actions style="padding: 10px;">
-    <button mat-stroked-button style="width: 40px;" (click)="confirm(foodOj.fid,amount)">
+    <p style="text-align: end;margin-right: 50px;">รวม {{sumprice}}</p>
+    </mat-card-footer> -->
+    
+    
+    <mat-card-actions style="padding: 10px;justify-content: end;">
+      <button mat-stroked-button style="width: 40px;" (click)="addToCart(foodOj)">
       OK
     </button>
-  
+    <div style="width: 10px;"> </div>
     <button mat-stroked-button style="width: 40px;" (click)="close()">
       Cancle
     </button>
   </mat-card-actions>
   </mat-card>
-
-<!-- <div class="row">
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handlePlus()">
-      <mat-icon>add</mat-icon>
-    </button>
-    <mat-card-content>
-      จำนวน {{amount}}
-    </mat-card-content>
-
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handleMinus()">
-      <mat-icon>remove</mat-icon>
-    </button>
-  </div> -->
-  <!-- <div class="row">
-    <div class="col">
-        <mat-card-content>
-          ราคารวม {{sumprice}}
-        </mat-card-content>
-    </div>
-    <div class="col">
-      <div class="row" style="display: flex;justify-content: end;text-align: end;">
-        <button mat-stroked-button style="width: 40px;" (click)="handleMinus()"><mat-icon>remove</mat-icon></button>
-        <mat-card-content>
-          จำนวน {{amount}}
-        </mat-card-content>
-        <button mat-stroked-button style="width: 40px;" (click)="handlePlus()"><mat-icon>add</mat-icon></button>
-      </div>
-    </div>
-  </div>
-
-</mat-card>
-
-<!-- <mat-grid-list cols="6" rowHeight="100px">
-  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-    {{tile.text}}
-  </mat-grid-tile>
-</mat-grid-list> -->
-<!-- <mat-grid-list cols="6" rowHeight="2:2">
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile>
-      <button mat-stroked-button style="width: 40px;" (click)="handleMinus()">
-        <mat-icon>remove</mat-icon>
-      </button>
-    </mat-grid-tile>
-
-
-    <mat-grid-tile>
-      <mat-card-content>
-        {{amount}}
-      </mat-card-content>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <button mat-stroked-button (click)="handlePlus()">
-        <mat-icon>add</mat-icon>
-      </button></mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card-content>
-        ราคารวม {{sumprice}}
-      </mat-card-content>
-    </mat-grid-tile>
-
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
-
-    <mat-grid-tile>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <button mat-stroked-button style="width: 30px;"
-      (click)="handleMinus()">
-      Ok
-      </button>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <button mat-stroked-button (click)="handlePlus()">
-        cancle
-      </button>
-    </mat-grid-tile>
-  </mat-grid-list> -->
-
-
-
-<!-- <div class="food-card food-card--vertical">
-  <div class="food-card_img">
-    <img src={{foodOj.img}} alt="">
-
-  </div>
-  <div class="food-card_content">
-    <div class="food-card_title-section">
-      <a href="#!" class="food-card_title">{{foodOj.name}}</a>
-      <a href="#!" class="food-card_author">Burger</a>
-    </div>
-
-    <div class="food-card_bottom-section">
-      <div class="space-between">
-        <div class="pull-right">
-          <span class="badge badge-success">Veg</span>
-        </div>
-      </div>
-      <hr>
-      <div class="space-between">
-        <div class="food-card_price">
-          <span>{{foodOj.price}}</span>
-        </div>
-
-        <div class="food-card_order-count" style="margin-left: 50px;">
-          <div class="input-group mb-3">
-
-            <div class="input-group-prepend">
-              <button mat-stroked-button (click)="handlePlus()">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-
-            <input type="text" class="form-control input-manulator" placeholder=""
-              aria-label="Example text with button addon" aria-describedby="button-addon1" value="{{amount}}">
-
-              <button mat-stroked-button style="width: 40px;" (click)="handleMinus()">
-                <mat-icon>remove</mat-icon>
-              </button>
-            <div class="input-group-append">
-              <button mat-stroked-button style="width: 40px;" (click)="handleMinus()">
-                <mat-icon>remove</mat-icon>
-              </button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

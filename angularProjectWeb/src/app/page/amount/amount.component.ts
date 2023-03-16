@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, VERSION } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Food } from 'src/app/model/food.model';
+import { ProductService } from 'src/app/serice/product.service';
 import { AppdataService } from 'src/app/service/appdata.service';
+import { LocalService } from 'src/app/service/local.service';
 
 export interface Tile {
   color: string;
@@ -15,49 +18,44 @@ export interface Tile {
   templateUrl: './amount.component.html',
   styleUrls: ['./amount.component.scss']
 })
-export class AmountComponent {
+export class AmountComponent{
 
   foodOj: Food;
   name = `Angular ${VERSION.major}`;
   amount = 0;
   sumprice = 0;
+  session: any;
+
+  productList!: any[];
+  products: any[] = [];
+  subTotal!: any;
   constructor(private data: AppdataService,
     private dialogRef: MatDialogRef<AmountComponent>,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private local: LocalService,
+    private product_service: ProductService,
+    private router: Router) {
     this.foodOj = data.FoodServic;
+    this.product_service.loadCart();
+    this.products = this.product_service.getProduct();
   }
+
   close() {
     this.dialogRef.close();
   }
-  confirm(fid: string, amount: number) {
-    let jsonObj = {
-      fid: fid,
-      amount: amount,
-      sumprice: amount * this.foodOj.price
-    }
-    let jsonString = JSON.stringify(jsonObj);
-    console.log(jsonObj);
+  // confirm(Food: Object) {
+  //   let jsonString = JSON.stringify(Food);
+  //   this.local.saveData("SESSION", jsonString)
+  //   this.dialogRef.close();
+  // }
 
-    // this.http.put(this.data.apiEndpoint + "/landmark/" + fid, jsonString, { observe: 'response' }).subscribe((response) => {
-    //   console.log(JSON.stringify(response.status));
-    //   console.log(JSON.stringify(response.body));
-    //   this.dialogRef.close();
-    // })
-  }
-  handleMinus() {
-    if (this.amount > 0) {
-      this.amount--;
-      this.sumprice = this.amount * this.foodOj.price;
+  addToCart(food: any) {
+    if (!this.product_service.productInCart(food)) {
+      food.quantity = 1;
+      this.product_service.addToCart(food);
+      this.products = [...this.product_service.getProduct()];
+      this.subTotal = food.price;
     }
+    this.dialogRef.close();
   }
-  handlePlus() {
-    this.amount++;
-    this.sumprice = this.amount * this.foodOj.price;
-  }
-  tiles: Tile[] = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 1, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 3, rows: 1, color: '#DDBDF1' },
-  ];
 }
