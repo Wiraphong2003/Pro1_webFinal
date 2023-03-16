@@ -4,6 +4,7 @@ import { AppdataService } from 'src/app/service/appdata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AmountComponent } from '../amount/amount.component';
 import { InsertmenuComponent } from '../../page/admin/insertmenu/insertmenu.component';
+import { EditComponent } from "../../page/admin/edit/edit.component";
 
 
 
@@ -32,6 +33,11 @@ export class AdminComponent {
   }
   openDialog(){
     this.dialog.open(InsertmenuComponent,{
+      width : '350px'
+    })
+  }
+  Open(){
+    this.dialog.open(EditComponent,{
       width : '350px'
     })
   }

@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
+import { EditComponent } from './page/admin/edit/edit.component';
 
 ////
 
@@ -40,7 +41,8 @@ import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.componen
     HeaderComponent,
     AmountComponent,
     ShoppingCartComponent,
-    InsertmenuComponent
+    InsertmenuComponent,
+    EditComponent
   ],
   imports: [
     MatExpansionModule,
