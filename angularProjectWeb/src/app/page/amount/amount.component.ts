@@ -36,6 +36,8 @@ export class AmountComponent {
       sumprice: amount * this.foodOj.price
     }
     let jsonString = JSON.stringify(jsonObj);
+    console.log(jsonObj);
+
     // this.http.put(this.data.apiEndpoint + "/landmark/" + fid, jsonString, { observe: 'response' }).subscribe((response) => {
     //   console.log(JSON.stringify(response.status));
     //   console.log(JSON.stringify(response.body));

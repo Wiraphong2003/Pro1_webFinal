@@ -9,7 +9,7 @@
   </mat-card-actions>
 </mat-card> -->
 
-<!--
+
 <mat-card class="card" style="width: 500px;">
   <mat-card-header>
     <mat-card-title-group>
@@ -17,7 +17,35 @@
       <mat-card-subtitle>price {{foodOj.price}}</mat-card-subtitle>
       <img mat-card-sm-image src={{foodOj.img}}>
     </mat-card-title-group>
-  </mat-card-header> -->
+  </mat-card-header>
+  
+  <mat-card-content style="display: flex;">
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handleMinus()">
+      <mat-icon>remove</mat-icon>
+    </button>
+  
+    <mat-card style="font-size: 30px;text-align: center; width: 60px;margin-left: 20px;margin-right: 40px;">
+      <p style="margin-top: 10px;height: 20px;;">{{amount}}</p>
+    </mat-card>
+  
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handlePlus()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-content>
+  <mat-card-footer style="font-size: 20px;">
+    <p>รวม {{sumprice}}</p>
+  </mat-card-footer>
+  <mat-card-actions style="padding: 10px;">
+    <button mat-stroked-button style="width: 40px;" (click)="confirm(foodOj.fid,amount)">
+      OK
+    </button>
+  
+    <button mat-stroked-button style="width: 40px;" (click)="close()">
+      Cancle
+    </button>
+  </mat-card-actions>
+  </mat-card>
+
 <!-- <div class="row">
     <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handlePlus()">
       <mat-icon>add</mat-icon>
@@ -30,7 +58,7 @@
       <mat-icon>remove</mat-icon>
     </button>
   </div> -->
-<!-- <div class="row">
+  <!-- <div class="row">
     <div class="col">
         <mat-card-content>
           ราคารวม {{sumprice}}
@@ -47,7 +75,8 @@
     </div>
   </div>
 
-</mat-card> -->
+</mat-card>
+
 <!-- <mat-grid-list cols="6" rowHeight="100px">
   <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
     {{tile.text}}
@@ -101,7 +130,7 @@
 
 
 
-<div class="food-card food-card--vertical" style="width: 500px;height: 300px;">
+<!-- <div class="food-card food-card--vertical">
   <div class="food-card_img">
     <img src={{foodOj.img}} alt="">
 
@@ -136,6 +165,9 @@
             <input type="text" class="form-control input-manulator" placeholder=""
               aria-label="Example text with button addon" aria-describedby="button-addon1" value="{{amount}}">
 
+              <button mat-stroked-button style="width: 40px;" (click)="handleMinus()">
+                <mat-icon>remove</mat-icon>
+              </button>
             <div class="input-group-append">
               <button mat-stroked-button style="width: 40px;" (click)="handleMinus()">
                 <mat-icon>remove</mat-icon>
@@ -147,4 +179,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

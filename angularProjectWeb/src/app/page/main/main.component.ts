@@ -42,7 +42,7 @@ export class MainComponent {
     console.log(foods);
     this.dataService.FoodServic = foods;
     this.dialog.open(AmountComponent, {
-      maxWidth: '800px'
+      minWidth: '300px'
     })
   }
 }
