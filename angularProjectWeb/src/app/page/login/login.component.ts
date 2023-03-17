@@ -11,6 +11,7 @@ import { AppdataService } from 'src/app/service/appdata.service';
 export class LoginComponent {
   username!: string;
   password!: string;
+  dataList: any;
   constructor(private http: HttpClient,
     private router:Router
   ) {
@@ -21,10 +22,19 @@ export class LoginComponent {
     console.log("Login");
     let Json = { username: this.username, password: this.password };
     this.http.post('http://localhost:9999/webAPI_ProjectWebFinal/login',
-      JSON.stringify(Json))
-      .subscribe((response: any) => {
+      JSON.stringify(Json)).subscribe((response: any) => {
         console.log(response);
+        this.dataList = response;
+        // this.dataList.username
+        if (this.dataList.status === "owner") {
+          this.router.navigateByUrl("admin");
+        } else if (this.dataList.status === "customer") {
+          this.router.navigateByUrl("main");
+        }
+        else {
+          console.log("else check");
 
+        }
       }, Error => {
         console.log("Fail");
       });
