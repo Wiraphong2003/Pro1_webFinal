@@ -13,10 +13,14 @@ export class LoginComponent {
     private http: HttpClient,
     private router:Router
   ) {
+    
 
   }
   sumbit() {
     console.log("OK SUBMIT");
     this.router.navigateByUrl("main");
+  }
+  login(){
+    console.log("Click Login");
   }
 }
