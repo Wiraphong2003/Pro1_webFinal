@@ -13,6 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 ////
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from './page/admin/edit/edit.component';
+import { FooterComponent } from './page/footer/footer.component';
 ////
 
 @NgModule({
@@ -40,7 +42,8 @@ import { EditComponent } from './page/admin/edit/edit.component';
     AmountComponent,
     ShoppingCartComponent,
     InsertmenuComponent,
-    EditComponent
+    EditComponent,
+    FooterComponent
   ],
   imports: [
     MatExpansionModule,
@@ -58,7 +61,8 @@ import { EditComponent } from './page/admin/edit/edit.component';
     HttpClientModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
 
   ],
   providers: [],

@@ -1,32 +1,13 @@
 
 <mat-card class="card" style="width: 500px;">
-  <mat-card-header>
+  <mat-card-header style=" font-family: 'K2D', sans-serif;">
     <mat-card-title-group>
-      <mat-card-title>{{foodOj.name}}</mat-card-title>
-      <mat-card-subtitle>price {{foodOj.price}}</mat-card-subtitle>
+      <mat-card-title style="font-family: 'K2D', sans-serif;">{{foodOj.name}}</mat-card-title>
+      <mat-card-subtitle style="font-family: 'K2D', sans-serif;">price {{foodOj.price}}</mat-card-subtitle>
       <img mat-card-sm-image src={{foodOj.img}}>
     </mat-card-title-group>
   </mat-card-header>
-
-  <!-- <mat-card-content style="display: flex;">
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handleMinus()">
-      <mat-icon>remove</mat-icon>
-    </button>
-
-    <mat-card style="font-size: 30px;text-align: center; width: 60px;margin-left: 20px;margin-right: 40px;">
-      <p style="margin-top: 10px;height: 20px;;">{{amount}}</p>
-    </mat-card>
-
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="handlePlus()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-card-content>
-  <mat-card-footer style="font-size: 20px;">
-    <p style="text-align: end;margin-right: 50px;">รวม {{sumprice}}</p>
-    </mat-card-footer> -->
-    
-    
-    <mat-card-actions style="padding: 10px;justify-content: end;">
+    <mat-card-actions style="padding: 10px;justify-content: end;font-family: 'K2D', sans-serif;">
       <button mat-stroked-button style="width: 40px;" (click)="addToCart(foodOj)">
       OK
     </button>
