@@ -29,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
 import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from './page/admin/edit/edit.component';
 import { FooterComponent } from './page/footer/footer.component';
+
 ////
 
 @NgModule({
