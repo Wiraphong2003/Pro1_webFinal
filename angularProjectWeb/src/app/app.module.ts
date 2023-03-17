@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './page/header/header.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 ////
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -24,10 +25,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { ShoppingCartComponent } from './page/shopping-cart/shopping-cart.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
 import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from './page/admin/edit/edit.component';
-
 ////
 
 @NgModule({
@@ -58,8 +57,8 @@ import { EditComponent } from './page/admin/edit/edit.component';
     MatSelectModule,
     HttpClientModule,
     MatDialogModule,
-    FormsModule,
     MatInputModule,
+    FormsModule
 
   ],
   providers: [],

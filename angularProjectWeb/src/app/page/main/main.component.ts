@@ -34,7 +34,8 @@ export class MainComponent {
     });
   }
   getMenu(type: string) {
-    this.http.post(this.dataService.apiEndpoint + '/typees', (JSON.stringify({ "type": type }))).subscribe((types: any) => {
+    this.http.post(this.dataService.apiEndpoint + '/typees',
+    (JSON.stringify({ "type": type }))).subscribe((types: any) => {
       this.foods = types;
     });
   }

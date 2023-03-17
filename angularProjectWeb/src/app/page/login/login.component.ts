@@ -9,18 +9,24 @@ import { AppdataService } from 'src/app/service/appdata.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private dataServiec: AppdataService,
-    private http: HttpClient,
+  username!: string;
+  password!: string;
+  constructor(private http: HttpClient,
     private router:Router
   ) {
-    
+
 
   }
-  sumbit() {
-    console.log("OK SUBMIT");
-    this.router.navigateByUrl("main");
-  }
-  login(){
-    console.log("Click Login");
+  login() {
+    console.log("Login");
+    let Json = { username: this.username, password: this.password };
+    this.http.post('http://localhost:9999/webAPI_ProjectWebFinal/login',
+      JSON.stringify(Json))
+      .subscribe((response: any) => {
+        console.log(response);
+
+      }, Error => {
+        console.log("Fail");
+      });
   }
 }
