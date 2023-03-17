@@ -25,13 +25,14 @@ export class ShoppingCartComponent {
     private route: Router,
     private http: HttpClient,
     private local: LocalService,
-    private product_service: ProductService) {
+    private product_service: ProductService,
+    private router: Router) {
 
     this.items = local.items;
     // console.log(JSON.parse(this.items));
     this.product_service.loadCart();
     this.products = this.product_service.getProduct();
-  
+
   }
   removeFromCart(product: any) {
     this.product_service.removeProduct(product);
@@ -53,6 +54,9 @@ export class ShoppingCartComponent {
     if (this.amount > 0) {
       this.amount--;
     }
+  }
+  backmain() {
+    this.router.navigateByUrl("main");
   }
 
 }
