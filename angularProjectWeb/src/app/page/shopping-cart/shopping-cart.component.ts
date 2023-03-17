@@ -16,29 +16,28 @@ export class ShoppingCartComponent {
 
   amounts!: Localorder;
   items = [""];
-
-  amount = 0
+  counts = 0;
+  amount = 0;
   productList!: any[];
   products: any[] = [];
   subTotal!: any;
   constructor(private dataServec: AppdataService,
     private route: Router,
     private http: HttpClient,
-    private local: LocalService,
-    private product_service: ProductService,
+    private local: ProductService,
     private router: Router) {
-
-    this.items = local.items;
-    // console.log(JSON.parse(this.items));
-    this.product_service.loadCart();
-    this.products = this.product_service.getProduct();
+    this.local.loadCart();
+    this.products = this.local.getProduct();
+    this.local.setCount();
 
   }
   removeFromCart(product: any) {
-    this.product_service.removeProduct(product);
-    this.products = this.product_service.getProduct();
+    this.local.setCount();
+    this.local.removeProduct(product);
+    this.products = this.local.getProduct();
   }
   get total() {
+    this.local.setCount();
     return this.products?.reduce(
       (sum, product) => ({
         amount: 1,
@@ -51,6 +50,7 @@ export class ShoppingCartComponent {
     this.amount++;
   }
   removeAmont() {
+
     if (this.amount > 0) {
       this.amount--;
     }

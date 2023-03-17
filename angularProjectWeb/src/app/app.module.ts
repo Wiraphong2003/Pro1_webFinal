@@ -29,7 +29,8 @@ import {MatInputModule} from '@angular/material/input';
 import { InsertmenuComponent } from './page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from './page/admin/edit/edit.component';
 import { FooterComponent } from './page/footer/footer.component';
-
+import { MatBadgeModule } from '@angular/material/badge';
+import { HeadAdminComponent } from './page/head-admin/head-admin.component';
 ////
 
 @NgModule({
@@ -44,9 +45,11 @@ import { FooterComponent } from './page/footer/footer.component';
     ShoppingCartComponent,
     InsertmenuComponent,
     EditComponent,
-    FooterComponent
+    FooterComponent,
+    HeadAdminComponent
   ],
   imports: [
+    MatBadgeModule,
     MatExpansionModule,
     MatGridListModule,
     MatButtonModule,

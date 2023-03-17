@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AmountComponent } from '../amount/amount.component';
 import { InsertmenuComponent } from '../../page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from "../../page/admin/edit/edit.component";
+import { Food } from 'src/app/model/food.model';
 
 
 
@@ -15,6 +16,7 @@ import { EditComponent } from "../../page/admin/edit/edit.component";
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+
   foods: any = '';
   type: any = '';
   constructor(
@@ -29,16 +31,18 @@ export class AdminComponent {
     http.get(dataService.apiEndpoint + '/types').subscribe((types: any) => {
       this.type = types;
     });
-
   }
-  openDialog(){
+  installProduct(){
+    console.log("Install Product");
     this.dialog.open(InsertmenuComponent,{
-      width : '350px'
+      width : '550px'
     })
   }
-  Open(){
+  Open(data:any){
+    console.log(data);
+    this.dataService.FoodServic = data;
     this.dialog.open(EditComponent,{
-      width : '350px'
+      width : '550px'
     })
   }
 
@@ -53,20 +57,12 @@ export class AdminComponent {
       this.foods = types;
     });
   }
-  amount(foods: string) {
-    console.log("amount");
-    console.log(foods);
-    this.dataService.FoodServic = foods;
-    this.dialog.open(AmountComponent, {
-      minWidth: '300px'
-    })
-  }
+
   delete(fid : any){
     this.http.post(this.dataService.apiEndpoint+'/deletemenu',(JSON.stringify({"fid" : fid}))).subscribe();
     console.log(fid);
   }
   tmp(){
     console.log("tock");
-
   }
 }

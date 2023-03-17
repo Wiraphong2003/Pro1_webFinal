@@ -13,10 +13,9 @@ export class LoginComponent {
   password!: string;
   dataList: any;
   constructor(private http: HttpClient,
-    private router:Router
+    private router: Router,
+    private dateService: AppdataService
   ) {
-
-
   }
   login() {
     console.log("Login");
@@ -27,8 +26,11 @@ export class LoginComponent {
         this.dataList = response;
         // this.dataList.username
         if (this.dataList.status === "owner") {
+          this.dateService.isShowCart = 1;
           this.router.navigateByUrl("admin");
+
         } else if (this.dataList.status === "customer") {
+          this.dateService.isShowCart = 0
           this.router.navigateByUrl("main");
         }
         else {
