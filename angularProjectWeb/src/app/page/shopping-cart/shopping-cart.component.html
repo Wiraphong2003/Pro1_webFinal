@@ -54,11 +54,16 @@
           <p style="text-align: center;margin-top: 5%px;margin-bottom: 0%;">Order</p>
         </mat-card-title>
         <hr>
-        <mat-card-content  *ngFor="let product of products;
+        <mat-card-content *ngFor="let product of products;
         let i  = index">
-          <p>
-            {{i+1}} {{product.name}}
-          </p><br>
+          <div class="row">
+            <p class="col">
+              {{i+1}} {{product.name}}
+            </p>
+            <p class="col" style="text-align: end;">{{product.price}}</p>
+            </div>
+
+            <br>
         </mat-card-content>
         <mat-card-content style="text-align: end;">
           <p>Amount {{total | currency}}</p>
