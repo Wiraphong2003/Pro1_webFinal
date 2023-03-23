@@ -1,34 +1,37 @@
-ิี<button mat-icon-button style="float: right; margin: 5px;" mat-dialog-close>
-  <mat-icon>close</mat-icon>
-</button>
-<mat-dialog-content>
-  <header>
-    <h1>แก้ไขข้อมูล</h1>
-  </header>
-  <p><mat-form-field>
-    <span class="material-symbols-outlined">
-      lunch_dining
-      </span>
-    <input matInput placeholder="ชื่ออาหาร">
-  </mat-form-field></p>
-  <p><mat-form-field>
-    <span class="material-symbols-outlined">
-      currency_bitcoin
-      </span>
-    <input matInput placeholder="ราคา">
-  </mat-form-field></p>
-  <p><mat-form-field>
-    <span class="material-symbols-outlined">
-      add_photo_alternate
-      </span>
-    <input matInput placeholder="รูปภาพ">
-  </mat-form-field></p>
-  <p><mat-form-field>
-    <span class="material-symbols-outlined">
-      restaurant_menu
-      </span>
-    <input matInput placeholder="ประเภทอาหาร">
-  </mat-form-field></p>
-  <button mat-raised-button color="gray">Save</button>
-  <button mat-raised-button color="gray" mat-dialog-close>Cancle</button>
-</mat-dialog-content>
+ิี
+<section style="width:500px;">
+  <mat-dialog-content>
+    <header>
+      <h1>แก้ไขข้อมูล</h1>
+    </header>
+    <div class="HH" style="width: 100%;">
+      <p>
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>ชื่อสินค้า</mat-label>
+          <input matInput placeholder="Placeholder" value="{{foods.name}}">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>ราคาสินค้า</mat-label>
+          <input matInput placeholder="Placeholder" value="{{foods.price}}">
+        </mat-form-field>
+      </p>
+      <p style="height: 55px;">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>URL รูปภาพ</mat-label>
+          <input matInput placeholder="Placeholder" value="{{foods.img}}">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>ประเภทสินค้า</mat-label>
+          <input matInput placeholder="Placeholder" value="{{foods.type}}">
+        </mat-form-field>
+      </p>
+    </div>
+    <button mat-raised-button color="gray">Save</button>
+    <button mat-raised-button color="gray" mat-dialog-close>Cancle</button>
+    </mat-dialog-content>
+
+</section>

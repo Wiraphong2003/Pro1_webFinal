@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class AppdataService {
   apiEndpoint = 'http://localhost:9999/webAPI_ProjectWebFinal';
   FoodServic: any;
+  isShowCart!: any;
   constructor() { }
 }

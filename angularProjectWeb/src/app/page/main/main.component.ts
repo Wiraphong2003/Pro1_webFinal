@@ -40,7 +40,7 @@ export class MainComponent {
     });
   }
   amount(foods: string) {
-    console.log("amount");
+    console.log("amount");  
     console.log(foods);
     this.dataService.FoodServic = foods;
     this.dialog.open(AmountComponent, {

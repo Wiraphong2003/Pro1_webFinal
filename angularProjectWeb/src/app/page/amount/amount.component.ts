@@ -32,28 +32,25 @@ export class AmountComponent{
   constructor(private data: AppdataService,
     private dialogRef: MatDialogRef<AmountComponent>,
     private http: HttpClient,
-    private local: LocalService,
-    private product_service: ProductService,
+    private local: ProductService,
     private router: Router) {
     this.foodOj = data.FoodServic;
-    this.product_service.loadCart();
-    this.products = this.product_service.getProduct();
+    this.local.loadCart();
+    this.products = this.local.getProduct();
+
   }
 
   close() {
     this.dialogRef.close();
   }
-  // confirm(Food: Object) {
-  //   let jsonString = JSON.stringify(Food);
-  //   this.local.saveData("SESSION", jsonString)
-  //   this.dialogRef.close();
-  // }
 
   addToCart(food: any) {
-    if (!this.product_service.productInCart(food)) {
+    this.local.saveCart();
+    this.local.getCount();
+    if (!this.local.productInCart(food)) {
       food.quantity = 1;
-      this.product_service.addToCart(food);
-      this.products = [...this.product_service.getProduct()];
+      this.local.addToCart(food);
+      this.products = [...this.local.getProduct()];
       this.subTotal = food.price;
     }
     this.dialogRef.close();
