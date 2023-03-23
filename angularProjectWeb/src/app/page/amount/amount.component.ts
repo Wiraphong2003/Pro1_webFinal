@@ -18,7 +18,7 @@ export interface Tile {
   templateUrl: './amount.component.html',
   styleUrls: ['./amount.component.scss']
 })
-export class AmountComponent{
+export class AmountComponent {
 
   foodOj: Food;
   name = `Angular ${VERSION.major}`;
@@ -29,6 +29,7 @@ export class AmountComponent{
   productList!: any[];
   products: any[] = [];
   subTotal!: any;
+  foodcart!: any[];
   constructor(private dataService: AppdataService,
     private dialogRef: MatDialogRef<AmountComponent>,
     private http: HttpClient,
@@ -39,21 +40,50 @@ export class AmountComponent{
     this.local.loadCart();
     this.products = this.local.getProduct();
 
+
+    this.http.get(this.dataService.apiEndpoint + '/cart/' + localUser.getData("USER")).subscribe((data: any) => {
+      console.log(data);
+      this.foodcart = data
+    });
+
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  addToCart(food: any) {
+  addToCart(fid: any) {
+
+    // let isP = false
+    // this.foodcart.forEach(element => {
+    //   if (element.fid.includes(fid)) {
+    //     console.log("MEEEEEE");
+    //     isP = false
+    //   } else {
+    //     isP = true
+    //   }
+    // });
+
+    // if (isP) {
+    //   let insert = {
+    //     uid: this.localUser.getData("USER"),
+    //     food_id: fid,
+    //   }
+    //   this.http.post(this.dataService.apiEndpoint + '/insertcart',
+    //     (JSON.stringify(insert))).subscribe((cart: any) => {
+    //       console.log(cart);
+    //     });
+    // }
+
     let insert = {
       uid: this.localUser.getData("USER"),
-      food_id: food,
+      food_id: fid,
     }
     this.http.post(this.dataService.apiEndpoint + '/insertcart',
       (JSON.stringify(insert))).subscribe((cart: any) => {
         console.log(cart);
       });
+
     this.dialogRef.close();
   }
 }
