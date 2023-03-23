@@ -53,36 +53,43 @@ export class AmountComponent {
   }
 
   addToCart(fid: any) {
+    this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localUser.getData("USER")).subscribe((data: any) => {
+      console.log(data);
+      this.foodcart = data
+    });
 
-    // let isP = false
     // this.foodcart.forEach(element => {
+    //   console.log(element.fid.includes(fid));
     //   if (element.fid.includes(fid)) {
     //     console.log("MEEEEEE");
     //     isP = false
-    //   } else {
-    //     isP = true
     //   }
     // });
+    const result = this.foodcart.some((obj) => {
+      return obj.fid === fid;
+    });
 
-    // if (isP) {
-    //   let insert = {
-    //     uid: this.localUser.getData("USER"),
-    //     food_id: fid,
-    //   }
-    //   this.http.post(this.dataService.apiEndpoint + '/insertcart',
-    //     (JSON.stringify(insert))).subscribe((cart: any) => {
-    //       console.log(cart);
-    //     });
-    // }
+    console.log(result); // 👉️ true
 
-    let insert = {
-      uid: this.localUser.getData("USER"),
-      food_id: fid,
+    if (!result) {
+      let insert = {
+        uid: this.localUser.getData("USER"),
+        food_id: fid,
+      }
+      this.http.post(this.dataService.apiEndpoint + '/insertcart',
+        (JSON.stringify(insert))).subscribe((cart: any) => {
+          console.log(cart);
+        });
     }
-    this.http.post(this.dataService.apiEndpoint + '/insertcart',
-      (JSON.stringify(insert))).subscribe((cart: any) => {
-        console.log(cart);
-      });
+
+    // let insert = {
+    //   uid: this.localUser.getData("USER"),
+    //   food_id: fid,
+    // }
+    // this.http.post(this.dataService.apiEndpoint + '/insertcart',
+    //   (JSON.stringify(insert))).subscribe((cart: any) => {
+    //     console.log(cart);
+    //   });
 
     this.dialogRef.close();
   }
