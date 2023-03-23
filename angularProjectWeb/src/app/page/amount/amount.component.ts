@@ -58,13 +58,6 @@ export class AmountComponent {
       this.foodcart = data
     });
 
-    // this.foodcart.forEach(element => {
-    //   console.log(element.fid.includes(fid));
-    //   if (element.fid.includes(fid)) {
-    //     console.log("MEEEEEE");
-    //     isP = false
-    //   }
-    // });
     const result = this.foodcart.some((obj) => {
       return obj.fid === fid;
     });
@@ -81,16 +74,6 @@ export class AmountComponent {
           console.log(cart);
         });
     }
-
-    // let insert = {
-    //   uid: this.localUser.getData("USER"),
-    //   food_id: fid,
-    // }
-    // this.http.post(this.dataService.apiEndpoint + '/insertcart',
-    //   (JSON.stringify(insert))).subscribe((cart: any) => {
-    //     console.log(cart);
-    //   });
-
     this.dialogRef.close();
   }
 }
