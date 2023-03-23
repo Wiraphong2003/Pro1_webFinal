@@ -32,6 +32,7 @@ export class LoginComponent {
         } else if (this.dataList.status === "customer") {
           this.dateService.isShowCart = 0
           this.router.navigateByUrl("main");
+          this.dateService.userNow
         }
         else {
           console.log("else check");
