@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,18 +7,20 @@ import { Localorder } from 'src/app/model/localorder.model';
 import { ProductService } from 'src/app/serice/product.service';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { LocalService } from 'src/app/service/local.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from '../confirm/confirm.component';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent{
+  [x: string]: any;
 
   amounts!: Localorder;
 
   counts = 0;
-  amountALL = 0;
+  amountALL !: any;
   productList!: any[];
   products: any[] = [];
   subTotal!: any;
@@ -27,10 +30,19 @@ export class ShoppingCartComponent{
     private http: HttpClient,
     private local: ProductService,
     private router: Router,
-    private localS: LocalService) {
+    private localS: LocalService,
+    private dialog:MatDialog) {
     this.local.loadCart();
     this.products = this.local.getProduct();
     this.local.setCount();
+
+    this.http.get(this.dataService.apiEndpoint + '/cartsumprice/' + localS.getData("USER")).subscribe((data: any) => {
+      console.log(data);
+      console.log(data[0]);
+      let total = data[0].total
+      console.log("TOTAL:" + total);
+      this.amountALL = total
+    });
 
     this.http.get(this.dataService.apiEndpoint + '/cart/' + localS.getData("USER")).subscribe((data: any) => {
       console.log(data);
@@ -38,11 +50,13 @@ export class ShoppingCartComponent{
     });
 
   }
-  gettotal(){
-    this.foodcart.forEach(element => {
-      console.log(element.amount);
-      this.amountALL = element.amount*element.price
-      // element.amount
+  getTotal() {
+    this.http.get(this.dataService.apiEndpoint + '/cartsumprice/' + this.localS.getData("USER")).subscribe((data: any) => {
+      console.log(data);
+      console.log(data[0]);
+      let total = data[0].total
+      console.log("TOTAL:" + total);
+      this.amountALL = total
     });
   }
   removeFromCart(fid: any) {
@@ -58,7 +72,7 @@ export class ShoppingCartComponent{
         this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
           console.log(data);
           this.foodcart = data
-          this.gettotal()
+          this.getTotal()
         });
     });
   }
@@ -78,13 +92,14 @@ export class ShoppingCartComponent{
         this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
           console.log(data);
           this.foodcart = data
-          this.gettotal()
+          this.getTotal()
+
         });
 
       });
   }
   removeAmont(fid:any,amount:any) {
-    if(amount>0){
+    if (amount > 1) {
       let Jsonamount = {
       uid: this.localS.getData("USER"),
       food_id: fid,
@@ -97,16 +112,28 @@ export class ShoppingCartComponent{
         this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
           console.log(data);
           this.foodcart = data
-          this.gettotal()
+          this.getTotal()
+
         });
       });
+    } else {
+      // this.dataService.FoodServic  = fid
+      // this.dialog.open(ConfirmComponent, {
+      //   width: '350px'
+      // })
+      let text;
+      if (confirm("คุณต้องการลบสินค้าออกจากตะกร้าหรือไม่") == true) {
+        text = "You pressed OK!";
+        this.removeFromCart(fid)
+      } else {
+        text = "You canceled!";
+      }
     }
     console.log(fid);
     console.log(amount);
   }
 
   backmain() {
-    this.gettotal()
     this.router.navigateByUrl("main");
   }
 

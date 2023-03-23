@@ -31,6 +31,7 @@ import { EditComponent } from './page/admin/edit/edit.component';
 import { FooterComponent } from './page/footer/footer.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HeadAdminComponent } from './page/head-admin/head-admin.component';
+import { ConfirmComponent } from './page/confirm/confirm.component';
 ////
 
 @NgModule({
@@ -46,7 +47,8 @@ import { HeadAdminComponent } from './page/head-admin/head-admin.component';
     InsertmenuComponent,
     EditComponent,
     FooterComponent,
-    HeadAdminComponent
+    HeadAdminComponent,
+    ConfirmComponent
   ],
   imports: [
     MatBadgeModule,

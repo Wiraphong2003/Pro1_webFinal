@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AmountComponent } from '../amount/amount.component';
+import { LocalService } from 'src/app/service/local.service';
+import { HeaderComponent } from '../header/header.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -15,7 +17,8 @@ export class MainComponent {
   constructor(
     private dataService: AppdataService,
     private http: HttpClient,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private local:LocalService
   ) {
     http.get(dataService.apiEndpoint + '/foods').subscribe((data: any) => {
       console.log(data);
