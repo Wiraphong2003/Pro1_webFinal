@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppdataService } from 'src/app/service/appdata.service';
+import { LocalService } from 'src/app/service/local.service';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,11 @@ export class LoginComponent {
   username!: string;
   password!: string;
   dataList: any;
+  userLocal:any;
   constructor(private http: HttpClient,
     private router: Router,
-    private dateService: AppdataService
+    private dateService: AppdataService,
+    private Local:LocalService
   ) {
   }
   login() {
@@ -32,7 +35,8 @@ export class LoginComponent {
         } else if (this.dataList.status === "customer") {
           this.dateService.isShowCart = 0
           this.router.navigateByUrl("main");
-          this.dateService.userNow
+          this.dateService.userNow = this.dataList.uid
+          this.Local.saveData('USER',this.dataList.uid)
         }
         else {
           console.log("else check");

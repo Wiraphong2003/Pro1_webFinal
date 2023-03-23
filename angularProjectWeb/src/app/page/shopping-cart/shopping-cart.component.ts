@@ -12,50 +12,101 @@ import { LocalService } from 'src/app/service/local.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent{
 
   amounts!: Localorder;
-  items = [""];
+
   counts = 0;
-  amount = 0;
+  amountALL = 0;
   productList!: any[];
   products: any[] = [];
   subTotal!: any;
-  constructor(private dataServec: AppdataService,
+  foodcart!: any[];
+  constructor(private dataService: AppdataService,
     private route: Router,
     private http: HttpClient,
     private local: ProductService,
-    private router: Router) {
+    private router: Router,
+    private localS: LocalService) {
     this.local.loadCart();
     this.products = this.local.getProduct();
     this.local.setCount();
 
-  }
-  removeFromCart(product: any) {
-    this.local.setCount();
-    this.local.removeProduct(product);
-    this.products = this.local.getProduct();
-  }
-  get total() {
-    this.local.setCount();
-    return this.products?.reduce(
-      (sum, product) => ({
-        amount: 1,
-        price: sum.price + this.amount * product.price,
-      }),
-      { quantity: 1, price: 0 }
-    ).price;
-  }
-  addAmount() {
-    this.amount++;
-  }
-  removeAmont() {
+    this.http.get(this.dataService.apiEndpoint + '/cart/' + localS.getData("USER")).subscribe((data: any) => {
+      console.log(data);
+      this.foodcart = data
+    });
 
-    if (this.amount > 0) {
-      this.amount--;
-    }
   }
+  gettotal(){
+    this.foodcart.forEach(element => {
+      console.log(element.amount);
+      this.amountALL = element.amount*element.price
+      // element.amount
+    });
+  }
+  removeFromCart(fid: any) {
+    console.log(fid);
+    let Jsonamount = {
+      uid: this.localS.getData("USER"),
+      food_id: fid,
+    }
+    this.http.post(this.dataService.apiEndpoint + '/deletecart',
+      (JSON.stringify(Jsonamount))).subscribe((e: any) => {
+        console.log(e);
+
+        this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
+          console.log(data);
+          this.foodcart = data
+          this.gettotal()
+        });
+    });
+  }
+  addAmount(fid: any,amount:any) {
+    console.log(fid);
+    console.log(amount);
+
+    let Jsonamount = {
+      uid: this.localS.getData("USER"),
+      food_id: fid,
+      amount:amount+1
+    }
+    this.http.post(this.dataService.apiEndpoint + '/updatecart',
+      (JSON.stringify(Jsonamount))).subscribe((e: any) => {
+        console.log(e);
+
+        this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
+          console.log(data);
+          this.foodcart = data
+          this.gettotal()
+        });
+
+      });
+  }
+  removeAmont(fid:any,amount:any) {
+    if(amount>0){
+      let Jsonamount = {
+      uid: this.localS.getData("USER"),
+      food_id: fid,
+      amount: amount-1
+    }
+    this.http.post(this.dataService.apiEndpoint + '/updatecart',
+      (JSON.stringify(Jsonamount))).subscribe((e: any) => {
+        console.log(e);
+
+        this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
+          console.log(data);
+          this.foodcart = data
+          this.gettotal()
+        });
+      });
+    }
+    console.log(fid);
+    console.log(amount);
+  }
+
   backmain() {
+    this.gettotal()
     this.router.navigateByUrl("main");
   }
 

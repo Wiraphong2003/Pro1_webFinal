@@ -32,9 +32,4 @@ export class LocalService {
   public clearData() {
     localStorage.clear();
   }
-
-
-
-
-
 }

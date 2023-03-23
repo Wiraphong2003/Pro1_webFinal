@@ -22,9 +22,9 @@ export class HeaderComponent {
     private local: ProductService) {
     local.setCount()
     this.count = local.getCount();
-    console.log(this.count);
+    // console.log(this.count);
     this.isshow = dataService.isShowCart;
-    console.log(this.isshow);
+    // console.log(this.isshow);
 
   }
   cartLink() {

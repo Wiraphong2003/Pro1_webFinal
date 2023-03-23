@@ -11,7 +11,7 @@ import { AmountComponent } from '../amount/amount.component';
 export class MainComponent {
   foods: any = '';
   type: any = '';
-
+  user:any;
   constructor(
     private dataService: AppdataService,
     private http: HttpClient,
@@ -24,6 +24,9 @@ export class MainComponent {
     http.get(dataService.apiEndpoint + '/types').subscribe((types: any) => {
       this.type = types;
     });
+
+    this.user  =   dataService.userNow
+    console.log(this.user);
 
   }
 
@@ -40,7 +43,7 @@ export class MainComponent {
     });
   }
   amount(foods: string) {
-    console.log("amount");  
+    console.log("amount");
     console.log(foods);
     this.dataService.FoodServic = foods;
     this.dialog.open(AmountComponent, {

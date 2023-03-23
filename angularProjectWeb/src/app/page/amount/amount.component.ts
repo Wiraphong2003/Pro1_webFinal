@@ -29,12 +29,13 @@ export class AmountComponent{
   productList!: any[];
   products: any[] = [];
   subTotal!: any;
-  constructor(private data: AppdataService,
+  constructor(private dataService: AppdataService,
     private dialogRef: MatDialogRef<AmountComponent>,
     private http: HttpClient,
     private local: ProductService,
+    private localUser: LocalService,
     private router: Router) {
-    this.foodOj = data.FoodServic;
+    this.foodOj = dataService.FoodServic;
     this.local.loadCart();
     this.products = this.local.getProduct();
 
@@ -45,14 +46,14 @@ export class AmountComponent{
   }
 
   addToCart(food: any) {
-    this.local.saveCart();
-    this.local.getCount();
-    if (!this.local.productInCart(food)) {
-      food.quantity = 1;
-      this.local.addToCart(food);
-      this.products = [...this.local.getProduct()];
-      this.subTotal = food.price;
+    let insert = {
+      uid: this.localUser.getData("USER"),
+      food_id: food,
     }
+    this.http.post(this.dataService.apiEndpoint + '/insertcart',
+      (JSON.stringify(insert))).subscribe((cart: any) => {
+        console.log(cart);
+      });
     this.dialogRef.close();
   }
 }
