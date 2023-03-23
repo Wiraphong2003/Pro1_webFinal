@@ -10,20 +10,20 @@
         {{ amountALL| currency}}</div>
       <div class="row" style="margin-top: 20px;" *ngFor="let product of foodcart; let i  = index">
         <div class="card">
-          <div class="card-header">
-            {{product.name}}
+          <div class="card-header" style="display: flex;">
+            <div class="col-4" style="font-size: 24px;"> {{product.name}} </div>
+            <div class="col-8" style="justify-content: end;display: flex;font-size: 16px;"> ราคา {{product.price}}</div>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-4">
-                <img [src]="product?.img" alt="" style="width: 150px;">
+                <img [src]="product?.img" alt="" style="width: 250px;">
               </div>
               <div class="col-4">
 
               </div>
-
               <div class="col-4" style="justify-content: end;display: flex;">
-                <div class="row" style="width: 100px;">
+                <div class="row" style="height: 50px;width:50px;">
                   <button type="button" class="btn btn-success mt-2" (click)="addAmount(product.fid,product.amount)">
                     <mat-icon>add</mat-icon>
                   </button>
@@ -35,10 +35,16 @@
                   </button>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 ${{ product.price| number :'1.2-2'}}
+              </div> -->
+              <div class="row-4">
                 <button (click)="removeFromCart(product.fid)" type="button" class="btn btn-danger mt-3">
-                  Remove from cart
+                  <!-- <mat-icon>restore_from_trash</mat-icon> -->
+                  <!-- <i class="fas fa-trash-alt"></i> -->
+                  <span class="material-symbols-outlined">
+                    delete
+                  </span>
                 </button>
               </div>
             </div>
@@ -60,11 +66,11 @@
         let i  = index">
           <div class="row">
             <p class="col">
-              {{i+1}} {{product.name}}
+              {{i+1}} {{product.name}} x {{product.amount}}
             </p>
             <p class="col" style="text-align: end;">{{product.price*product.amount}}</p>
-            </div>
-            <br>
+          </div>
+          <br>
         </mat-card-content>
         <mat-card-content style="text-align: end;">
           <p>Amount {{amountALL | currency}}</p>
@@ -77,5 +83,3 @@
     </div>
   </div>
 </div>
-
-
