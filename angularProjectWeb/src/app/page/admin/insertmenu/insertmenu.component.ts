@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AppdataService } from 'src/app/service/appdata.service';
 
 @Component({
   selector: 'app-insertmenu',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class InsertmenuComponent {
 
+  constructor(private dataService: AppdataService,private http: HttpClient){
+
+  }
 }
