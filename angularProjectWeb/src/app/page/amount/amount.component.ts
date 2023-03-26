@@ -20,6 +20,7 @@ export interface Tile {
 })
 export class AmountComponent {
 
+
   foodOj: Food;
   name = `Angular ${VERSION.major}`;
   amount = 0;
@@ -53,27 +54,48 @@ export class AmountComponent {
   }
 
   addToCart(fid: any) {
-    this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localUser.getData("USER")).subscribe((data: any) => {
-      console.log(data);
-      this.foodcart = data
-    });
+    if (this.amount >= 1) {
+      this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localUser.getData("USER")).subscribe((data: any) => {
+        console.log(data);
+        this.foodcart = data
+      });
 
-    const result = this.foodcart.some((obj) => {
-      return obj.fid === fid;
-    });
+      const result = this.foodcart.some((obj) => {
+        return obj.fid === fid;
+      });
 
-    console.log(result); // 👉️ true
+      console.log(result); // 👉️ true
 
-    if (!result) {
-      let insert = {
-        uid: this.localUser.getData("USER"),
-        food_id: fid,
+      if (!result) {
+        let insert = {
+          uid: this.localUser.getData("USER"),
+          food_id: fid,
+          amount: this.amount
+        }
+        this.http.post(this.dataService.apiEndpoint + '/insertcart',
+          (JSON.stringify(insert))).subscribe((cart: any) => {
+            console.log(cart);
+          });
       }
-      this.http.post(this.dataService.apiEndpoint + '/insertcart',
-        (JSON.stringify(insert))).subscribe((cart: any) => {
-          console.log(cart);
-        });
+      else{
+        let text;
+        if (confirm("มีสินค้าในตะกร้าแล้ว") == true) {
+          text = "You pressed OK!";
+        }
+        else {
+          text = "You canceled!";
+        }
+      }
+    }else{
+      let text;
+      if(confirm("ต้องเลือกจำนวนสินค้ามากกว่า 0 เท่านั้น")==true){
+        text = "You pressed OK!";
+      }
+      else{
+        text = "You canceled!";
+      }
     }
+
     this.dialogRef.close();
   }
 }

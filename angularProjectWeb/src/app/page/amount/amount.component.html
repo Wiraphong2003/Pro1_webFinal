@@ -1,19 +1,26 @@
-
 <mat-card class="card" style="width: 500px;">
   <mat-card-header style=" font-family: 'K2D', sans-serif;">
     <mat-card-title-group>
-      <mat-card-title style="font-family: 'K2D', sans-serif;">{{foodOj.name}}</mat-card-title>
+      <mat-card-title style="font-size: 30px;font-family: 'K2D', sans-serif;">{{foodOj.name}}</mat-card-title>
       <mat-card-subtitle style="font-family: 'K2D', sans-serif;">price {{foodOj.price}}</mat-card-subtitle>
-      <img mat-card-sm-image src={{foodOj.img}}>
+        <mat-form-field style="width: 150px;" appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input matInput placeholder="Length" type="number" [(ngModel)]="amount"
+            style="text-align: center;font-family: 'K2D', sans-serif;font-size: 24px;">
+        </mat-form-field>
     </mat-card-title-group>
   </mat-card-header>
-    <mat-card-actions style="padding: 10px;justify-content: end;font-family: 'K2D', sans-serif;">
+  <mat-card-actions style="padding: 10px;justify-content: space-between;font-family: 'K2D', sans-serif;">
+    <img mat-card-sm-image src={{foodOj.img}} style="justify-content: start;display: flex;">
+    <div class="row" style="margin-right: 10px;">
       <button mat-stroked-button style="width: 40px;" (click)="addToCart(foodOj.fid)">
-      OK
-    </button>
-    <div style="width: 10px;"> </div>
-    <button mat-stroked-button style="width: 40px;" (click)="close()">
-      Cancle
-    </button>
+        OK
+        </button>
+      <div style="width: 5px;"> </div>
+      <button mat-stroked-button style="width: 40px;" (click)="close()">
+        Cancle
+      </button>
+    </div>
+
   </mat-card-actions>
-  </mat-card>
+</mat-card>
