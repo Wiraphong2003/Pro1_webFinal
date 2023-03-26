@@ -60,21 +60,28 @@ export class ShoppingCartComponent{
     });
   }
   removeFromCart(fid: any) {
-    console.log(fid);
-    let Jsonamount = {
-      uid: this.localS.getData("USER"),
-      food_id: fid,
-    }
-    this.http.post(this.dataService.apiEndpoint + '/deletecart',
-      (JSON.stringify(Jsonamount))).subscribe((e: any) => {
-        console.log(e);
+    let text;
+    if (confirm("คุณต้องการลบสินค้าออกจากตะกร้าหรือไม่") == true) {
+      text = "You pressed OK!";
+      console.log(fid);
+      let Jsonamount = {
+        uid: this.localS.getData("USER"),
+        food_id: fid,
+      }
+      this.http.post(this.dataService.apiEndpoint + '/deletecart',
+        (JSON.stringify(Jsonamount))).subscribe((e: any) => {
+          console.log(e);
 
-        this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
-          console.log(data);
-          this.foodcart = data
-          this.getTotal()
+          this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
+            console.log(data);
+            this.foodcart = data
+            this.getTotal()
+          });
         });
-    });
+    } else {
+      text = "You canceled!";
+    }
+
   }
   addAmount(fid: any,amount:any) {
     console.log(fid);
@@ -121,13 +128,14 @@ export class ShoppingCartComponent{
       // this.dialog.open(ConfirmComponent, {
       //   width: '350px'
       // })
-      let text;
-      if (confirm("คุณต้องการลบสินค้าออกจากตะกร้าหรือไม่") == true) {
-        text = "You pressed OK!";
-        this.removeFromCart(fid)
-      } else {
-        text = "You canceled!";
-      }
+      this.removeFromCart(fid)
+      // let text;
+      // if (confirm("คุณต้องการลบสินค้าออกจากตะกร้าหรือไม่") == true) {
+      //   text = "You pressed OK!";
+      //   this.removeFromCart(fid)
+      // } else {
+      //   text = "You canceled!";
+      // }
     }
     console.log(fid);
     console.log(amount);
@@ -136,5 +144,4 @@ export class ShoppingCartComponent{
   backmain() {
     this.router.navigateByUrl("main");
   }
-
 }
