@@ -144,4 +144,10 @@ export class ShoppingCartComponent{
   backmain() {
     this.router.navigateByUrl("main");
   }
+  payment(){
+    console.log(this.localS.getData("USER"));
+
+    console.log(this.foodcart);
+    const JSONs = this.foodcart;
+  }
 }
