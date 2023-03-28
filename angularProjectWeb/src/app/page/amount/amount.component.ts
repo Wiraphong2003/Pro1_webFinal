@@ -23,7 +23,7 @@ export class AmountComponent {
 
   foodOj: Food;
   name = `Angular ${VERSION.major}`;
-  amount = 0;
+  amount = 1;
   sumprice = 0;
   session: any;
 
