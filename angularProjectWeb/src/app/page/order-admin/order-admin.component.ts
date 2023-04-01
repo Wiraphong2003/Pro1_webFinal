@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { LocalService } from 'src/app/service/local.service';
 import { Observable } from 'rxjs'
@@ -20,7 +20,8 @@ export class OrderAdminComponent {
   constructor(
     private http: HttpClient,
     private localS: LocalService,
-    private dataService: AppdataService
+    private dataService: AppdataService,
+    private router :Router
   ) {
 
     this.http.get(this.dataService.apiEndpoint + '/getlistorder').subscribe((data: any) => {
@@ -60,6 +61,9 @@ export class OrderAdminComponent {
     // console.log(ss);
 
 
+  }
+  backmain() {
+    this.router.navigateByUrl("admin");
   }
 
   getdetailFood(str: any): Observable<any> {

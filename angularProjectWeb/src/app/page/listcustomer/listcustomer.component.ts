@@ -36,8 +36,10 @@ export class ListcustomerComponent {
       });
     });
 
-    this.http.get(this.dataService.apiEndpoint + '/getlistFoodorders/'+ local.getData("USER")).subscribe((data: any) => {
+    this.http.get(this.dataService.apiEndpoint + '/getlistFoodorders').subscribe((data: any) => {
       this.Food = data;
+      console.log(this.Food);
+
     });
 
   }

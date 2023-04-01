@@ -1,13 +1,15 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <button mat-raised-button color="primary" style="width: 100px;font-family: 'K2D', sans-serif;"
+    <button mat-raised-button color="primary" style="width: 100px;font-family: 'K2D', sans-serif;margin-bottom: 20px;"
       (click)="backmain()">กลับ</button>
   </div>
+
   <mat-accordion>
+
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
       *ngFor="let order of listOrder; let i  = index">
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header style="background-color: rgb(240, 227, 211);">
         <mat-panel-title style="max-width: 50px;">
           {{order.oid}}
         </mat-panel-title>
@@ -18,7 +20,7 @@
               {{order.cname}}
             </div>
             <div class="col-2">
-              {{order.totalPrice}}
+              {{order.totalPrice+" $"}}
             </div>
             <div class="col-2">
               {{order.status}}
@@ -30,24 +32,24 @@
 
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div class="row">
-        <div class="col">
-          <p>Address <br>{{order.address}}</p>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-3">
+          <p>Address:{{" "+order.address}}</p>
         </div>
-        <div class="col">
-          <p>call <br>{{order.cphone}}</p>
+        <div class="col-3">
+          <p>Phone:{{" "+order.cphone}}</p>
         </div>
       </div>
       <div class="row" *ngFor="let food of Food; let i  = index">
         <div class="col-4">
-          <p>{{order.oid == food.oid ? food.name :""}}</p>
+          <p>{{order.oid == food.oid ? food.name+" x "+food.amount :""}}</p>
         </div>
-        <div class="col-4">
-          <p>{{order.oid == food.oid ? food.amount :""}}</p>
+        <div class="col-8" style="justify-content: end;display: flex;">
+          <p>{{order.oid == food.oid ? food.price*food.amount +" $":""}}</p>
         </div>
-        <div class="col-4">
-          <p>{{order.oid == food.oid ? food.price :""}}</p>
-        </div>
+      </div>
+      <div class="row">
+        <p style="justify-content: end;display: flex;">{{"ราคาสุทธิ: "+order.totalPrice+" $"}}</p>
       </div>
       <!-- <div class="row" *ngIf="panelOpenState; ">
           <p *ngFor="let food of spilt(order.cartSTR); let i  = index">
