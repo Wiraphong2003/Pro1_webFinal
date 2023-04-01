@@ -39,6 +39,8 @@ export class OrderAdminComponent {
 
     this.http.get(this.dataService.apiEndpoint + '/getlistFoodorders').subscribe((data: any) => {
       this.Food = data;
+      console.log(this.Food);
+
     });
 
 
@@ -66,9 +68,7 @@ export class OrderAdminComponent {
     this.router.navigateByUrl("admin");
   }
 
-  getdetailFood(str: any): Observable<any> {
-    return this.http.get(this.dataService.apiEndpoint + '/getFoodname/' + str);
-  }
+
   confirm(oid: any) {
     console.log("OK");
     let Jsonamount = {
