@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <button mat-raised-button color="primary" style="width: 100px;font-family: 'K2D', sans-serif;"
+      (click)="backmain()">กลับ</button>
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+      *ngFor="let order of listOrder; let i  = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="max-width: 50px;">
+          {{order.oid}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+          <div class="row" style="justify-content: space-evenly;display: flex;width: 100%;">
+            <div class="col-6">
+              {{order.cname}}
+            </div>
+            <div class="col-2">
+              {{order.totalPrice}}
+            </div>
+            <div class="col-2">
+              {{order.status}}
+            </div>
+            <div class="col-2">
+              {{order.time}}
+            </div>
+          </div>
+
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <div class="col">
+          <p>Address <br>{{order.address}}</p>
+        </div>
+        <div class="col">
+          <p>call <br>{{order.cphone}}</p>
+        </div>
+      </div>
+      <div class="row" *ngFor="let food of Food; let i  = index">
+        <div class="col-4">
+          <p>{{order.oid == food.oid ? food.name :""}}</p>
+        </div>
+        <div class="col-4">
+          <p>{{order.oid == food.oid ? food.amount :""}}</p>
+        </div>
+        <div class="col-4">
+          <p>{{order.oid == food.oid ? food.price :""}}</p>
+        </div>
+      </div>
+      <!-- <div class="row" *ngIf="panelOpenState; ">
+          <p *ngFor="let food of spilt(order.cartSTR); let i  = index">
+            {{getdetailFood(food)}}
+          </p>
+        </div> -->
+      <!-- <div class="row" *ngIf="panelOpenState;">
+
+        </div> -->
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

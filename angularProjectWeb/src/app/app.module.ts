@@ -32,6 +32,9 @@ import { FooterComponent } from './page/footer/footer.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HeadAdminComponent } from './page/head-admin/head-admin.component';
 import { ConfirmComponent } from './page/confirm/confirm.component';
+import { DetailOrderComponent } from './page/detail-order/detail-order.component';
+import { OrderAdminComponent } from './page/order-admin/order-admin.component';
+import { ListcustomerComponent } from './page/listcustomer/listcustomer.component';
 ////
 
 @NgModule({
@@ -48,7 +51,10 @@ import { ConfirmComponent } from './page/confirm/confirm.component';
     EditComponent,
     FooterComponent,
     HeadAdminComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    DetailOrderComponent,
+    OrderAdminComponent,
+    ListcustomerComponent
   ],
   imports: [
     MatBadgeModule,

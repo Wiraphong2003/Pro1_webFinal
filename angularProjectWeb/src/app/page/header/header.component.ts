@@ -38,6 +38,10 @@ export class HeaderComponent {
     console.log("cartLint");
     this.router.navigateByUrl("/cart");
   }
+  listOrder() {
+    console.log("listorder");
+    this.router.navigateByUrl("/listcustomer");
+  }
 }
 
 

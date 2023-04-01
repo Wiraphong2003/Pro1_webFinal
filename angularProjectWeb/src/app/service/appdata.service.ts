@@ -8,5 +8,6 @@ export class AppdataService {
   FoodServic: any;
   isShowCart!: any;
   userNow:any;
+  total:any;
   constructor() { }
 }

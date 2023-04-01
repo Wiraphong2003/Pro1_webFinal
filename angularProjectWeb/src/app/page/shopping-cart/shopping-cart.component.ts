@@ -9,6 +9,7 @@ import { AppdataService } from 'src/app/service/appdata.service';
 import { LocalService } from 'src/app/service/local.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { DetailOrderComponent } from '../detail-order/detail-order.component';
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -26,7 +27,6 @@ export class ShoppingCartComponent{
   subTotal!: any;
   foodcart!: any[];
   constructor(private dataService: AppdataService,
-    private route: Router,
     private http: HttpClient,
     private local: ProductService,
     private router: Router,
@@ -124,18 +124,8 @@ export class ShoppingCartComponent{
         });
       });
     } else {
-      // this.dataService.FoodServic  = fid
-      // this.dialog.open(ConfirmComponent, {
-      //   width: '350px'
-      // })
       this.removeFromCart(fid)
-      // let text;
-      // if (confirm("คุณต้องการลบสินค้าออกจากตะกร้าหรือไม่") == true) {
-      //   text = "You pressed OK!";
-      //   this.removeFromCart(fid)
-      // } else {
-      //   text = "You canceled!";
-      // }
+
     }
     console.log(fid);
     console.log(amount);
@@ -149,5 +139,14 @@ export class ShoppingCartComponent{
 
     console.log(this.foodcart);
     const JSONs = this.foodcart;
+
+    this.dataService.total = this.amountALL
+    const dialogRef = this.dialog.open(DetailOrderComponent, {
+
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 }

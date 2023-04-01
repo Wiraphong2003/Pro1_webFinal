@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppdataService } from 'src/app/service/appdata.service';
+import { LocalService } from 'src/app/service/local.service';
 
 @Component({
   selector: 'app-head-admin',
@@ -6,5 +10,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./head-admin.component.scss']
 })
 export class HeadAdminComponent {
+  constructor(
+    private dataService: AppdataService,
+    private http: HttpClient,
+    private local: LocalService,
+    private Router :Router
+  ) {
 
+  }
+  listOrder() {
+    console.log("listorder");
+    this.Router.navigateByUrl("/orderadmin");
+  }
 }
