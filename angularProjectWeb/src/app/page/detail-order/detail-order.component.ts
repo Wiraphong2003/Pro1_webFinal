@@ -25,6 +25,8 @@ export class DetailOrderComponent {
   cartSTR: string = "";
   time: string = ""
 
+  arraycartAmounts !: any;
+
   constructor(private dataService: AppdataService,
     private dialogRef: MatDialogRef<DetailOrderComponent>,
     private route: Router,
@@ -97,9 +99,34 @@ export class DetailOrderComponent {
         }
         this.http.post(this.dataService.apiEndpoint + '/updatecartOID',
           (JSON.stringify(jjj))).subscribe((e: any) => {
-            console.log(e);
+
+            this.http.get(this.dataService.apiEndpoint + '/getcartOid/' + oided).subscribe((data: any) => {
+              // console.log(data);
+              this.arraycartAmounts = data;
+              this.arraycartAmounts.forEach((element: any) => {
+                let ss = {
+                  cart_id: element.cart_id,
+                  uid: element.uid,
+                  food_id: element.food_id,
+                  amount: element.amount,
+                  oid: element.oid
+                }
+                console.log(ss);
+                this.http.post(this.dataService.apiEndpoint + '/pushcartAmount',
+                  (JSON.stringify(ss))).subscribe((e: any) => {
+                    console.log(e);
+                  });
+              });
+
+            });
+
           });
+
+
+
       });
+
+
     this.dialogRef.close();
   }
 
