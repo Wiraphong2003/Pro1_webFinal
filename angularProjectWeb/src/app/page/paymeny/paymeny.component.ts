@@ -24,7 +24,16 @@ export class PaymenyComponent {
   }
   OK(){
     console.log("OK");
+
+    let ss = {
+      uid: this.localS.getData("USER")
+    }
+    this.http.post(this.dataService.apiEndpoint + '/deletecartAll',
+      (JSON.stringify(ss))).subscribe((e: any) => {
+        console.log(e);
+      });
     this.dialogRef.close();
+
   }
 
 }
