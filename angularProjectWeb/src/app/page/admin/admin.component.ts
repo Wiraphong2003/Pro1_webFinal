@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AmountComponent } from '../amount/amount.component';
 import { InsertmenuComponent } from '../../page/admin/insertmenu/insertmenu.component';
 import { EditComponent } from "../../page/admin/edit/edit.component";
-import { Food } from 'src/app/model/food.model';
+
 
 
 

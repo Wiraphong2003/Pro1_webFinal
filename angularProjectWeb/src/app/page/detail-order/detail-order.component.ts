@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { LocalService } from 'src/app/service/local.service';
+import { PaymenyComponent } from '../paymeny/paymeny.component';
 
 @Component({
   selector: 'app-detail-order',
@@ -31,7 +32,8 @@ export class DetailOrderComponent {
     private dialogRef: MatDialogRef<DetailOrderComponent>,
     private route: Router,
     private http: HttpClient,
-    private localS: LocalService
+    private dialog: MatDialog,
+    private localS: LocalService,
   ) {
     this.totaldef = dataService.total;
     this.http.get(this.dataService.apiEndpoint + '/cart/' + localS.getData("USER")).subscribe((data: any) => {
@@ -57,11 +59,10 @@ export class DetailOrderComponent {
   }
 
   confirm() {
-    // console.log("YES");
-    // console.log("Name" + this.Fname + "  " + this.Lname);
-    // console.log("phone: " + this.phone);
-    // console.log("address: " + this.address);
-    // console.log("detail: " + this.detail);
+    this.dialog.open(PaymenyComponent, {
+      minWidth: '300px'
+    })
+
     const now = new Date();
     // console.log(this.cart_ids);
     this.cartSTR = ""
@@ -95,7 +96,7 @@ export class DetailOrderComponent {
 
         let jjj = {
           "oid": oided,
-          "uid": this.localS.getData("USER"),
+          "uid": this.localS.getData("USER")
         }
         this.http.post(this.dataService.apiEndpoint + '/updatecartOID',
           (JSON.stringify(jjj))).subscribe((e: any) => {
@@ -122,13 +123,7 @@ export class DetailOrderComponent {
 
           });
 
-
-
       });
-
-
     this.dialogRef.close();
   }
-
-
 }

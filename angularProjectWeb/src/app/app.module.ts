@@ -35,6 +35,7 @@ import { ConfirmComponent } from './page/confirm/confirm.component';
 import { DetailOrderComponent } from './page/detail-order/detail-order.component';
 import { OrderAdminComponent } from './page/order-admin/order-admin.component';
 import { ListcustomerComponent } from './page/listcustomer/listcustomer.component';
+import { PaymenyComponent } from './page/paymeny/paymeny.component';
 ////
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ListcustomerComponent } from './page/listcustomer/listcustomer.componen
     ConfirmComponent,
     DetailOrderComponent,
     OrderAdminComponent,
-    ListcustomerComponent
+    ListcustomerComponent,
+    PaymenyComponent
   ],
   imports: [
     MatBadgeModule,

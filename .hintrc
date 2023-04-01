@@ -29,6 +29,13 @@
       {
         "label": "off"
       }
+    ],
+    "compat-api/html": [
+      "default",
+      {
+          "meta[name=theme-color]"
+        ]
+      }
     ]
   }
 }
