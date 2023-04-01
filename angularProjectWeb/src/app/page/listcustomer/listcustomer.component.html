@@ -23,6 +23,7 @@
               {{order.totalPrice+" $"}}
             </div>
             <div class="col-2">
+              <!-- {{order.status === "ส่งแล้ว"? color=="#32F234":""}} -->
               {{order.status}}
             </div>
             <div class="col-2">
@@ -37,15 +38,15 @@
           <p>Address:{{" "+order.address}}</p>
         </div>
         <div class="col-3">
-          <p>Phone:{{" "+order.cphone}}</p>
+          <p>Phone: {{" 0"+order.cphone}}</p>
         </div>
       </div>
       <div class="row" *ngFor="let food of Food; let i  = index">
         <div class="col-4">
-          <p>{{order.oid == food.oid ? food.name+" x "+food.amount :""}}</p>
+          {{order.oid == food.oid ? food.name+" x "+food.amount :""}}
         </div>
         <div class="col-8" style="justify-content: end;display: flex;">
-          <p>{{order.oid == food.oid ? food.price*food.amount +" $":""}}</p>
+          {{order.oid == food.oid ? food.price*food.amount +" $":""}}
         </div>
       </div>
       <div class="row">

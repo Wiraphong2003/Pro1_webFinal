@@ -14,7 +14,7 @@
         </mat-panel-title>
         <mat-panel-description>
           <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
-          <div class="row" style="justify-content: space-evenly;display: flex;width: 100%;">
+          <div class="row" style="width: 100%;">
             <div class="col-6">
               {{order.cname}}
             </div>
@@ -28,7 +28,6 @@
               {{order.time}}
             </div>
           </div>
-
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="row" style="margin-top: 20px;">
@@ -36,15 +35,15 @@
           <p>Address:{{" "+order.address}}</p>
         </div>
         <div class="col-3">
-          <p>Phone:{{" "+order.cphone}}</p>
+          <p>Phone: {{order.cphone}}</p>
         </div>
       </div>
-      <div class="row" *ngFor="let food of Food; let i  = index" sty>
+      <div class="row" *ngFor="let food of Food; let i  = index">
         <div class="col-4">
-          <p>{{order.oid == food.oid ? food.name+" x "+food.amount :""}}</p>
+          {{order.oid == food.oid ? food.name+" x "+food.amount :""}}
         </div>
         <div class="col-8" style="justify-content: end;display: flex;">
-          <p>{{order.oid == food.oid ? food.price*food.amount +" $":""}}</p>
+          {{order.oid == food.oid ? food.price*food.amount +" $":""}}
         </div>
       </div>
       <div class="row">
@@ -55,7 +54,7 @@
             <button mat-raised-button color="primary" (click)="confirm(order.oid)">จัดส่ง</button>
           </div>
         </section>
-        
+
       <!-- <div class="row" *ngIf="panelOpenState; ">
           <p *ngFor="let food of spilt(order.cartSTR); let i  = index">
             {{getdetailFood(food)}}

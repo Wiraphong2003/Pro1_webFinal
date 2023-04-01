@@ -12,7 +12,7 @@ import { LocalService } from 'src/app/service/local.service';
 export class ListcustomerComponent {
 
   panelOpenState = false;
-
+  color!:any;
   listOrder!: any;
   listcart_id !: any;
   listcartArray !: any[];
