@@ -95,7 +95,6 @@ export class AmountComponent {
         text = "You canceled!";
       }
     }
-
     this.dialogRef.close();
   }
 }
