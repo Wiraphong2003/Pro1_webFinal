@@ -12,11 +12,12 @@ import { Observable } from 'rxjs'
 export class OrderAdminComponent {
   panelOpenState = false;
 
-  listOrder!: any;
+  listOrder: Array<any> = [];
   listcart_id !: any;
   listcartArray !: any[];
   arrayFood!: any;
   Food: any;
+  isshowlist = true;
   constructor(
     private http: HttpClient,
     private localS: LocalService,
@@ -34,6 +35,11 @@ export class OrderAdminComponent {
         this.listcart_id = cid;
         this.listcartArray = cid.split(",");
         console.log(this.listcartArray);
+        if (data.length === 0) {
+          this.isshowlist = true;
+        } else {
+          this.isshowlist = false;
+        }
       });
     });
 
@@ -74,6 +80,7 @@ export class OrderAdminComponent {
     let Jsonamount = {
       oid: oid
     }
+
     this.http.post(this.dataService.apiEndpoint + '/updatestatus',
       (JSON.stringify(Jsonamount))).subscribe((e: any) => {
         console.log(e);

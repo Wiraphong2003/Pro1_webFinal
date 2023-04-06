@@ -10,5 +10,6 @@ export class AppdataService {
   isShowCart!: any;
   userNow:any;
   total:any;
+  orderdetalt!:any
   constructor() { }
 }

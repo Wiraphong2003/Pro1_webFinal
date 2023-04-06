@@ -40,6 +40,7 @@ export class DetailOrderComponent {
       console.log(data);
       this.foodcart = data
     });
+
     this.http.get(this.dataService.apiEndpoint + '/cartsumprice/' + localS.getData("USER")).subscribe((data: any) => {
       console.log(data);
       console.log(data[0]);
@@ -47,10 +48,12 @@ export class DetailOrderComponent {
       console.log("TOTAL:" + total);
       this.amountALL = total
     });
+
     this.http.get(this.dataService.apiEndpoint + '/getcart_id/' + this.localS.getData("USER")).subscribe((data: any) => {
       this.cart_ids = data;
 
     });
+    
     this.vatamount = (0.07 * this.dataService.total) + this.dataService.total
     console.log((0.07 * this.dataService.total) + this.dataService.total);
   }
@@ -59,71 +62,56 @@ export class DetailOrderComponent {
   }
 
   confirm() {
-    this.dialog.open(PaymenyComponent, {
-      minWidth: '300px'
-    })
-
     const now = new Date();
-    // console.log(this.cart_ids);
     this.cartSTR = ""
     this.cart_ids.forEach((element: any) => {
       let cid: String = element.cart_id
       this.cartSTR += cid + ',';
       // console.log(this.cartSTR);
     });
+
     // console.log("Ans " + this.cartSTR);
     // console.log((this.cartSTR.trim()).split(','));
     const editedText = this.cartSTR.slice(0, -1)
     this.time = now.toLocaleString();
 
-    let Json = {
-      cname: this.Fname + " " + this.Lname,
-      cphone: this.phone,
-      address: this.address,
-      detail: this.detail,
-      totalPrice: this.vatamount,
-      time: this.time,
-      status: "ยังไม่ส่ง",
-      cusid: this.localS.getData("USER"),
-      cartSTR: editedText
-    }
-    console.log(Json);
-    this.http.post(this.dataService.apiEndpoint + '/insertIorder',
-      (JSON.stringify(Json))).subscribe((e: any) => {
-        console.log(e);
-        let oided = e.oid;
-        console.log("oided: " + oided);
 
-        let jjj = {
-          "oid": oided,
-          "uid": this.localS.getData("USER")
-        }
-        this.http.post(this.dataService.apiEndpoint + '/updatecartOID',
-          (JSON.stringify(jjj))).subscribe((e: any) => {
+    let text;
+    let Json
+    console.log("Fanem: " + this.Fname);
+    console.log("phone: " + this.phone);
+    console.log("address: " + this.address);
 
-            this.http.get(this.dataService.apiEndpoint + '/getcartOid/' + oided).subscribe((data: any) => {
-              // console.log(data);
-              this.arraycartAmounts = data;
-              this.arraycartAmounts.forEach((element: any) => {
-                let ss = {
-                  cart_id: element.cart_id,
-                  uid: element.uid,
-                  food_id: element.food_id,
-                  amount: element.amount,
-                  oid: element.oid
-                }
-                console.log(ss);
-                this.http.post(this.dataService.apiEndpoint + '/pushcartAmount',
-                  (JSON.stringify(ss))).subscribe((e: any) => {
-                    console.log(e);
-                  });
-              });
+    if (this.Fname === undefined &&
+      this.phone === undefined &&
+      this.address == undefined) {
+      if (confirm("กรุณากรอกข้อมูลให้ครบถ้วน") == true) {
+        text = "You pressed OK!";
+      } else {
+        text = "!";
+      }
+    } else {
+      Json = {
+        cname: this.Fname + " " + this.Lname,
+        cphone: this.phone,
+        address: this.address,
+        detail: this.detail,
+        totalPrice: this.vatamount,
+        time: this.time,
+        status: "ยังไม่ส่ง",
+        cusid: this.localS.getData("USER"),
+        cartSTR: editedText
+      }
+      console.log(Json);
 
-            });
+      this.dialogRef.close();
 
-          });
-
+      this.dataService.orderdetalt = Json;
+      this.dialog.open(PaymenyComponent, {
+        minWidth: '300px'
       });
-    this.dialogRef.close();
+
+
+    }
   }
 }

@@ -15,7 +15,7 @@ import { DetailOrderComponent } from '../detail-order/detail-order.component';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent{
+export class ShoppingCartComponent {
   [x: string]: any;
 
   amounts!: Localorder;
@@ -26,12 +26,13 @@ export class ShoppingCartComponent{
   products: any[] = [];
   subTotal!: any;
   foodcart!: any[];
+  isshowdetalamount = false;
   constructor(private dataService: AppdataService,
     private http: HttpClient,
     private local: ProductService,
     private router: Router,
     private localS: LocalService,
-    private dialog:MatDialog) {
+    private dialog: MatDialog) {
     this.local.loadCart();
     this.products = this.local.getProduct();
     this.local.setCount();
@@ -42,6 +43,12 @@ export class ShoppingCartComponent{
       let total = data[0].total
       console.log("TOTAL:" + total);
       this.amountALL = total
+      console.log("isshowdetalamount: " + this.isshowdetalamount);
+      if (this.amountALL === null) {
+        this.isshowdetalamount = false;
+      } else {
+        this.isshowdetalamount = true;
+      }
     });
 
     this.http.get(this.dataService.apiEndpoint + '/cart/' + localS.getData("USER")).subscribe((data: any) => {
@@ -57,6 +64,11 @@ export class ShoppingCartComponent{
       let total = data[0].total
       console.log("TOTAL:" + total);
       this.amountALL = total
+      if (this.amountALL === null) {
+        this.isshowdetalamount = false;
+      } else {
+        this.isshowdetalamount = true;
+      }
     });
   }
   removeFromCart(fid: any) {
@@ -76,6 +88,11 @@ export class ShoppingCartComponent{
             console.log(data);
             this.foodcart = data
             this.getTotal()
+            if (this.amountALL === null) {
+              this.isshowdetalamount = false;
+            } else {
+              this.isshowdetalamount = true;
+            }
           });
         });
     } else {
@@ -83,14 +100,14 @@ export class ShoppingCartComponent{
     }
 
   }
-  addAmount(fid: any,amount:any) {
+  addAmount(fid: any, amount: any) {
     console.log(fid);
     console.log(amount);
 
     let Jsonamount = {
       uid: this.localS.getData("USER"),
       food_id: fid,
-      amount:amount+1
+      amount: amount + 1
     }
     this.http.post(this.dataService.apiEndpoint + '/updatecart',
       (JSON.stringify(Jsonamount))).subscribe((e: any) => {
@@ -105,24 +122,24 @@ export class ShoppingCartComponent{
 
       });
   }
-  removeAmont(fid:any,amount:any) {
+  removeAmont(fid: any, amount: any) {
     if (amount > 1) {
       let Jsonamount = {
-      uid: this.localS.getData("USER"),
-      food_id: fid,
-      amount: amount-1
-    }
-    this.http.post(this.dataService.apiEndpoint + '/updatecart',
-      (JSON.stringify(Jsonamount))).subscribe((e: any) => {
-        console.log(e);
+        uid: this.localS.getData("USER"),
+        food_id: fid,
+        amount: amount - 1
+      }
+      this.http.post(this.dataService.apiEndpoint + '/updatecart',
+        (JSON.stringify(Jsonamount))).subscribe((e: any) => {
+          console.log(e);
 
-        this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
-          console.log(data);
-          this.foodcart = data
-          this.getTotal()
+          this.http.get(this.dataService.apiEndpoint + '/cart/' + this.localS.getData("USER")).subscribe((data: any) => {
+            console.log(data);
+            this.foodcart = data
+            this.getTotal()
 
+          });
         });
-      });
     } else {
       this.removeFromCart(fid)
 
@@ -134,7 +151,7 @@ export class ShoppingCartComponent{
   backmain() {
     this.router.navigateByUrl("main");
   }
-  payment(){
+  payment() {
     console.log(this.localS.getData("USER"));
 
     console.log(this.foodcart);

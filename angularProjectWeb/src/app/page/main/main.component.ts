@@ -49,7 +49,6 @@ export class MainComponent {
     console.log("amount");
     console.log(foods);
     this.dataService.FoodServic = foods;
-    // this.dataService.FoodServicFid = this.dataService.FoodServic.fid;
     this.dialog.open(AmountComponent, {
       minWidth: '300px'
     })

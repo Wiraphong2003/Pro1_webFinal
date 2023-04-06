@@ -14,12 +14,16 @@ export class HeadAdminComponent {
     private dataService: AppdataService,
     private http: HttpClient,
     private local: LocalService,
-    private Router :Router
+    private router: Router,
   ) {
 
   }
   listOrder() {
     console.log("listorder");
-    this.Router.navigateByUrl("/orderadmin");
+    this.router.navigateByUrl("/orderadmin");
+  }
+  logout() {
+    console.log("logout");
+    this.router.navigateByUrl("/login");
   }
 }

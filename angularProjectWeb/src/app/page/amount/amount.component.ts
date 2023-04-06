@@ -48,14 +48,16 @@ export class AmountComponent {
     this.http.get(this.dataService.apiEndpoint + '/cart/' + localUser.getData("USER")).subscribe((data: any) => {
       console.log(data);
       this.foodcart = data
+
+      data.forEach((ss: any) => {
+        if (this.foodOj.fid === ss.fid) {
+          this.tempamount = ss.amount;
+        }
+      });
     });
 
 
-    this.foodcart.forEach(element => {
-      if (this.foodOj.fid === element.fid) {
-        this.tempamount = element.amount;
-      }
-    });
+
 
   }
 
@@ -91,7 +93,6 @@ export class AmountComponent {
       }
 
       if (!result) {
-        console.log("insert1:" + insert);
         this.http.post(this.dataService.apiEndpoint + '/insertcart',
           (JSON.stringify(insert))).subscribe((cart: any) => {
             console.log(cart);
@@ -100,9 +101,17 @@ export class AmountComponent {
       else{
         let text;
         console.log("insert2:" + insert);
-        if (confirm("มีสินค้าในตะกร้าแล้ว") == true) {
+        if (confirm("มีสินค้าในตะกร้าแล้ว ต้องการ Update เพิ่มหรือไม่") == true) {
           text = "You pressed OK!";
-
+          let inserts = {
+            uid: this.localUser.getData("USER"),
+            food_id: fid,
+            amount: this.amount
+          }
+          this.http.post(this.dataService.apiEndpoint + '/updatecart',
+            (JSON.stringify(inserts))).subscribe((cart: any) => {
+              console.log(cart);
+            });
         }
         else {
           text = "You canceled!";

@@ -13,11 +13,13 @@ export class ListcustomerComponent {
 
   panelOpenState = false;
   color!:any;
-  listOrder!: any;
+  listOrder: Array<any> = [];
   listcart_id !: any;
-  // listcartArray !: any[];
+  listcartArray !: any;
+  // listOrder!:any;
   arrayFood!: any;
-  Food: any;
+  Food!: any;
+  isshowlist = true;
   constructor(private router: Router,
     private http: HttpClient,
     private dataService: AppdataService,
@@ -33,17 +35,32 @@ export class ListcustomerComponent {
         this.listcart_id = cid;
         // this.listcartArray = cid.split(",");
         // console.log(this.listcartArray);
+        console.log(data.length === 0);
+        if (data.length === 0) {
+          this.isshowlist = true;
+        } else {
+          this.isshowlist = false;
+        }
       });
     });
 
+
+
     this.http.get(this.dataService.apiEndpoint + '/getlistFoodorders').subscribe((data: any) => {
       this.Food = data;
-      console.log(this.Food);
+      console.log(data);
 
+      // console.log(this.Food);
     });
 
   }
   backmain() {
     this.router.navigateByUrl("main");
+  }
+  isEmpty(obj: Record<string, any>): boolean {
+    for (const _key in obj) {
+      return false;
+    }
+    return true;
   }
 }

@@ -56,7 +56,7 @@
 
 
 
-    <div class="col-sm-4" style="margin-top: 10%;">
+    <div class="col-sm-4" style="margin-top: 10%;" *ngIf="isshowdetalamount">
       <mat-card>
         <mat-card-title>
           <p style="text-align: center;margin-top: 5%px;margin-bottom: 0%;">Order</p>
@@ -82,4 +82,7 @@
       </button>
     </div>
   </div>
+</div>
+<div class="container" *ngIf="!isshowdetalamount">
+  <h1 style="display: flex;justify-content: center;justify-items: center;margin-top: 50px;font-family: K2D;">ไม่มีสินค้าบนตะกร้า</h1>
 </div>

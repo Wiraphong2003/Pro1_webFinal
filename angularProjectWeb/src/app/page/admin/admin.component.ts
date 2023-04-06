@@ -34,7 +34,9 @@ export class AdminComponent {
   installProduct(){
     console.log("Install Product");
     this.dialog.open(InsertmenuComponent,{
-      width : '550px'
+      // width : '550px'
+      minHeight: '300px',
+      minWidth: '400px'
     })
   }
   Open(data:any){
