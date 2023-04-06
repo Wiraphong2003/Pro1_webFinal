@@ -11,6 +11,7 @@ import { PaymenyComponent } from './page/paymeny/paymeny.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'main', component: MainComponent },

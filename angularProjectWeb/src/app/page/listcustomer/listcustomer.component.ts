@@ -15,7 +15,7 @@ export class ListcustomerComponent {
   color!:any;
   listOrder!: any;
   listcart_id !: any;
-  listcartArray !: any[];
+  // listcartArray !: any[];
   arrayFood!: any;
   Food: any;
   constructor(private router: Router,
@@ -31,8 +31,8 @@ export class ListcustomerComponent {
         let cid: String = element.cartSTR
         console.log("cartSTR: " + cid);
         this.listcart_id = cid;
-        this.listcartArray = cid.split(",");
-        console.log(this.listcartArray);
+        // this.listcartArray = cid.split(",");
+        // console.log(this.listcartArray);
       });
     });
 

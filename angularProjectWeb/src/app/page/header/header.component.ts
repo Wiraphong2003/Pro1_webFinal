@@ -42,6 +42,10 @@ export class HeaderComponent {
     console.log("listorder");
     this.router.navigateByUrl("/listcustomer");
   }
+  logout() {
+    console.log("logout");
+    this.router.navigateByUrl("/login");
+  }
 }
 
 
