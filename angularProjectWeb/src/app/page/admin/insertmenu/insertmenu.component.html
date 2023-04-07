@@ -27,9 +27,16 @@
         <span class="material-symbols-outlined">
           restaurant_menu
       </span>
-      <input matInput placeholder="ประเภทอาหาร" [(ngModel)]="this.type" [ngModelOptions]="{standalone: true}">
+      <!-- <input matInput placeholder="ประเภทอาหาร" [(ngModel)]="this.type" [ngModelOptions]="{standalone: true}">
+             -->
+      <mat-select>
+        <mat-option class="txtmenu" (click)="allMenu()">ทั้งหมด</mat-option>
+        <mat-option class="txtmenu" #tid *ngFor="let types of type" [value]="types.tid" (click)="getMenu(tid.value)">
+          {{types.name}}
+        </mat-option>
+      </mat-select>
       </mat-form-field>
-      
+
       <!-- <button mat-raised-button color="gray">Save</button>
                                                   <button mat-raised-button color="gray" mat-dialog-close>Cancle</button> -->
       <!-- </mat-dialog-content> -->
