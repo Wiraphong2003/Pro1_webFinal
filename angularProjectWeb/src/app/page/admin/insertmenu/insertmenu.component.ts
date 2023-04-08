@@ -23,6 +23,10 @@ export class InsertmenuComponent {
     private http: HttpClient,
     private localUer: LocalService) {
 
+    http.get(dataService.apiEndpoint + '/types').subscribe((types: any) => {
+      this.type = types;
+    });
+
     http.get(dataService.apiEndpoint + '/foods').subscribe((data: any) => {
       // console.log(data);
       this.Foods = data;
@@ -53,6 +57,8 @@ export class InsertmenuComponent {
     });
   }
   getMenu(type: string) {
+    console.log("Type: " + type);
+    
     this.http.post(this.dataService.apiEndpoint + '/typees',
       (JSON.stringify({ "type": type }))).subscribe((types: any) => {
         this.foods = types;
@@ -60,6 +66,7 @@ export class InsertmenuComponent {
   }
 
   addFood() {
+
     let Json = {
       fid: this.fid,
       namd: this.name,
