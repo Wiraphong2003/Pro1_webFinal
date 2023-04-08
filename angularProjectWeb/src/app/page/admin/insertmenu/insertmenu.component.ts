@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AppdataService } from 'src/app/service/appdata.service';
 import { LocalService } from 'src/app/service/local.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-insertmenu',
@@ -11,14 +12,16 @@ import { LocalService } from 'src/app/service/local.service';
 export class InsertmenuComponent {
   fid!: any;
   name!: any;
-  price!: any;
+  price!: number;
   img!: any;
   type!: any;
   Foods !: any;
   lastF !: any;
   foods!: any;
+  TT!: any;
 
   constructor(
+    private dialogRef: MatDialogRef<InsertmenuComponent>,
     private dataService: AppdataService,
     private http: HttpClient,
     private localUer: LocalService) {
@@ -58,27 +61,30 @@ export class InsertmenuComponent {
   }
   getMenu(type: string) {
     console.log("Type: " + type);
-    
-    this.http.post(this.dataService.apiEndpoint + '/typees',
-      (JSON.stringify({ "type": type }))).subscribe((types: any) => {
-        this.foods = types;
-      });
+    this.TT = type;
+    // this.http.post(this.dataService.apiEndpoint + '/typees',
+    //   (JSON.stringify({ "type": type }))).subscribe((types: any) => {
+    //     this.foods = types;
+    //   });
+  }
+  close() {
+    this.dialogRef.close();
   }
 
   addFood() {
-
     let Json = {
-      fid: this.fid,
-      namd: this.name,
-      price: this.price,
-      img: this.img,
-      type: this.type
+      "fid": this.fid,
+      "name": this.name,
+      "price": this.price,
+      "img": this.img,
+      "type": this.TT
     }
-    console.log("addFood");
     console.log(Json);
     this.http.post(this.dataService.apiEndpoint + '/insertmenu',
       (JSON.stringify(Json))).subscribe((e: any) => {
         console.log(e);
       });
+    this.dialogRef.close();
+
   }
 }

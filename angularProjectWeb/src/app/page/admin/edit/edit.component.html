@@ -30,7 +30,13 @@
         </mat-form-field>
       </p>
     </div>
-    <button mat-raised-button color="gray">Save</button>
+    <button mat-raised-button color="gray"
+    (click)="update(
+    foods.name,
+    foods.price,
+    foods.img,
+    foods.type,
+    foods.fid)">Save</button>
     <button mat-raised-button color="gray" mat-dialog-close>Cancel</button>
     </mat-dialog-content>
 

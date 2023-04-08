@@ -31,19 +31,19 @@ export class AdminComponent {
       this.type = types;
     });
   }
-  installProduct(){
+  installProduct() {
     console.log("Install Product");
-    this.dialog.open(InsertmenuComponent,{
+    this.dialog.open(InsertmenuComponent, {
       // width : '550px'
       minHeight: '300px',
       minWidth: '400px'
     })
   }
-  Open(data:any){
+  Open(data: any) {
     console.log(data);
     this.dataService.FoodServic = data;
-    this.dialog.open(EditComponent,{
-      width : '550px'
+    this.dialog.open(EditComponent, {
+      width: '550px'
     })
   }
 
@@ -59,11 +59,17 @@ export class AdminComponent {
     });
   }
 
-  delete(fid : any){
-    this.http.post(this.dataService.apiEndpoint+'/deletemenu',(JSON.stringify({"fid" : fid}))).subscribe();
-    console.log(fid);
+  delete(fid: any) {
+    let text;
+    if(confirm("คุณต้องการลบอาหารออกจากระบบใช่หรอไม่") == true){
+      this.http.post(this.dataService.apiEndpoint + '/deletemenu', (JSON.stringify({ "fid": fid }))).subscribe();
+      console.log(fid);
+    }
+    else{
+      text = "You canceled!";
+    }
   }
-  tmp(){
+  tmp() {
     console.log("tock");
   }
 }
